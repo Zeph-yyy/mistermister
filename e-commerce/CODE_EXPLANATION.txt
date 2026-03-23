@@ -1,0 +1,1298 @@
+================================================================================
+        YOUR WEBSITE CODE EXPLAINED - LIKE YOU'RE IN GRADE 1!
+================================================================================
+
+Imagine your website is like a RESTAURANT. Here's how it works:
+
+================================================================================
+PART 1: THE MAIN PAGES (What users see)
+================================================================================
+
+1. INDEX.PHP - THE FRONT DOOR (Main Store)
+------------------------------------------------------------------------
+
+This is like the FRONT OF YOUR FRUIT SHOP. When people visit, they see:
+- Your logo at the top
+- All your fruits displayed nicely
+- A nice banner that says "Welcome!"
+
+WHAT IT DOES IN SIMPLE TERMS:
+It says: "Here are all our fruits! Pick one to see more details!"
+
+Think of it like opening your store window and showing all your products.
+
+HOW IT WORKS:
+1. Shows a welcome banner
+2. Shows 6 fruits in a grid (apples, bananas, strawberries, cucumbers, carrots, tomatoes)
+3. Each fruit has:
+   - A picture (emoji)
+   - A name
+   - A price
+   - A rating (stars)
+   - A button that says "View Details"
+
+WHEN YOU CLICK "VIEW DETAILS":
+- A big box pops up
+- Shows everything about that fruit
+- You can pick how many you want
+- You can click "Add to Cart" or "Buy Now"
+
+
+2. HEADER.PHP - THE TOP PART OF EVERY PAGE
+------------------------------------------------------------------------
+
+This is like the ANNOUNCEMENT BOARD AT THE TOP OF YOUR STORE. Every page has this.
+
+It shows:
+- Your store logo "Pandora's Produce"
+- Links to different places (Home, Shop, About, Contact)
+- A search box to find things
+- A shopping cart button with a number showing how many items
+
+SIMPLE EXPLANATION:
+Like the sign at the top saying: "Welcome! Here are the different sections!"
+
+WHAT IT CONTAINS:
+- Logo/Brand name at the left
+- Navigation menu (links to different pages)
+- Search bar in the middle
+- Cart icon on the right with a counter (shows how many items)
+
+
+3. FOOTER.PHP - THE BOTTOM PART OF EVERY PAGE
+------------------------------------------------------------------------
+
+This is like the SMALL NOTICE AT THE BOTTOM OF YOUR STORE DOOR.
+
+It shows:
+- Store name: "Pandora's Produce"
+- A message about what you sell
+- Copyright notice (saying it's your store from 2026)
+
+SIMPLE EXPLANATION:
+Like the small sign that says: "© 2026 - This store belongs to us!"
+
+WHAT IT HAS:
+- Footer content section with:
+  * Store name
+  * Description of business
+  * Copyright year (2026)
+
+
+4. CART.PHP - THE SHOPPING BAG
+------------------------------------------------------------------------
+
+This is like your SHOPPING BASKET AT THE CHECKOUT.
+
+It shows:
+- All the items you put in the cart
+- How much each costs
+- How many of each you want
+- Total money at the end
+- A button to go home and buy more
+- A button to finish buying (checkout)
+
+SIMPLE EXPLANATION:
+"Here's everything you picked! Do you want to buy it?"
+
+WHAT IT DISPLAYS:
+- A table with all your items
+- Product name with emoji
+- Price per item
+- Quantity (with +/- buttons to change)
+- Total price for that item
+- Remove button to delete items
+
+ON THE RIGHT SIDE (Summary):
+- Subtotal (total before tax and shipping)
+- Shipping cost ($5.99 if under $50, FREE if $50+)
+- Tax (8% of the price)
+- Total cost
+- "Proceed to Checkout" button
+- Promo code box (for discounts)
+- Benefits list
+
+
+5. CHECKOUT.PHP - THE CASH REGISTER
+------------------------------------------------------------------------
+
+This is like PAYING AT THE CHECKOUT COUNTER.
+
+It asks questions:
+- What's your name?
+- What's your email?
+- Where do we send your fruits?
+- What's your phone number?
+- Credit card information (for pretend payment)
+
+SIMPLE EXPLANATION:
+"Okay! Give us your information so we can send your stuff!"
+
+WHAT IT HAS:
+
+LEFT SIDE (Form):
+- Full Name field
+- Email Address field
+- Phone Number field
+- Delivery Address (big text box)
+- Cardholder Name
+- Card Number (1234 5678 9012 3456)
+- CVV (security code)
+- Expiry Date (MM/YY)
+- Agree to Terms checkbox
+- "Place Order" button
+- "Back to Cart" button
+
+
+6. ADMIN.PHP - THE OWNER'S OFFICE
+------------------------------------------------------------------------
+
+This is like the BOSS'S OFFICE WHERE YOU KEEP TRACK OF ALL ORDERS.
+
+It shows:
+- All customer orders that came in
+- How much money each order was
+- What status each order has (Pending, Shipped, etc.)
+- Details about each order
+
+SIMPLE EXPLANATION:
+"Here are all the things people bought!"
+
+WHAT YOU SEE:
+- A big table with columns:
+  * Order ID (like #1, #2, #3)
+  * Customer Email
+  * Total Amount ($)
+  * Status (Pending, Shipped, Completed)
+  * Date when ordered
+  * "View" button to see details
+
+WHEN YOU CLICK "VIEW":
+- A pop-up shows all details:
+  * Order ID
+  * Customer email
+  * Status
+  * Date
+  * All items in that order (name, quantity, price)
+  * Subtotal, Shipping, Tax
+  * Total amount
+
+
+7. SETUP.PHP - THE SETUP WIZARD
+------------------------------------------------------------------------
+
+This is like the FIRST-TIME SETUP WHEN YOU OPEN YOUR STORE.
+
+It says:
+- "Do you want me to set up the database?"
+- If yes, it creates all the tables to store information
+
+SIMPLE EXPLANATION:
+"Let me organize your filing cabinet for you!"
+
+WHAT IT DOES:
+1. Checks if database already exists
+2. If not, shows a button to set it up
+3. When you click the button, it:
+   - Creates the database
+   - Creates all the tables (storage shelves)
+   - Inserts sample products
+   - Shows success message
+
+================================================================================
+PART 2: THE BRAIN (Behind-the-scenes code)
+================================================================================
+
+8. API.PHP - THE MESSAGE MESSENGER
+------------------------------------------------------------------------
+
+This is like a DELIVERY PERSON BETWEEN YOUR WEBSITE AND YOUR STORAGE ROOM.
+
+When the website needs something, it sends a message like:
+- "Save this new order please!"
+- "Get all the products!"
+- "Tell me about order #5!"
+
+SIMPLE EXAMPLE:
+If someone asks for products:
+→ api.php says "Okay! Let me get them from storage!"
+→ It gives back all the products
+
+WHAT IT DOES:
+
+When action = save_order:
+1. Gets the order information from checkout
+2. Gets customer info (name, email, phone, address)
+3. Gets the cart items
+4. Sends everything to the database
+5. Returns success message with order ID
+
+When action = get_products:
+1. Asks database for all products
+2. Returns them as a list
+
+When action = get_order:
+1. Asks database: "Tell me about order #5"
+2. Gets that order and all items in it
+3. Returns the information
+
+When action = get_all_orders:
+1. Asks database for ALL orders
+2. Returns all of them for admin to see
+
+HOW IT WORKS WITH OTHER FILES:
+- checkout.js sends: "save this order"
+- api.php receives it
+- api.php calls db-functions.php to save it
+- api.php tells checkout.js: "Saved!"
+
+
+9. DB-CONFIG.PHP - THE LOCK AND KEY
+------------------------------------------------------------------------
+
+This is like the KEY TO ENTER YOUR STORAGE ROOM.
+
+It has:
+- Server address: "localhost" (your computer)
+- Username: "root" (the password)
+- Database name: "pandora_produce" (the storage room name)
+
+SIMPLE EXPLANATION:
+Like saying: "Hey computer, open storage room #pandora_produce with key 'root'"
+
+WHAT'S IN IT:
+
+Database Host: localhost
+(This means it's on your own computer, not a remote server)
+
+Database User: root
+(The username to access the database)
+
+Database Password: (empty)
+(No password needed in this case)
+
+Database Name: pandora_produce
+(The actual database to connect to)
+
+WHAT IT DOES:
+1. Creates a connection to MySQL
+2. Creates database if it doesn't exist
+3. Selects that database
+4. Sets the character type to UTF-8 (so special letters work)
+5. This connection gets used by ALL other files
+
+
+10. DB-FUNCTIONS.PHP - THE HELPER WORKER
+------------------------------------------------------------------------
+
+This is like your HELPER WHO GOES TO THE STORAGE ROOM AND GETS THINGS.
+
+Functions it has:
+- getAllProducts() - "Get all fruits from storage!"
+- createOrder() - "Save this new order!"
+- getOrderById() - "Tell me about order #5!"
+- saveUser() - "Remember this customer!"
+
+SIMPLE EXAMPLE:
+If you say "getAllProducts", it:
+1. Goes to storage
+2. Counts all the fruits
+3. Brings back a list with their names, prices, colors
+
+DETAILED BREAKDOWN:
+
+getAllProducts():
+PURPOSE: Get all products from database
+HOW IT WORKS:
+1. Connects to database
+2. Asks: "SELECT * FROM products"
+3. Gets back all 6 products
+4. Formats them nicely
+5. Returns a list like:
+   [
+     1 => {name: "Apples", price: 5.99}
+     2 => {name: "Bananas", price: 3.49}
+   ]
+
+getProductById($id):
+PURPOSE: Get one specific product
+HOW IT WORKS:
+1. Gets the product ID (like 1)
+2. Asks database: "Show me product #1"
+3. Returns all info about that product
+
+createOrder($email, $cart, $totals):
+PURPOSE: Save a new order when customer checks out
+HOW IT WORKS:
+1. Gets customer email
+2. Gets what they bought (cart items)
+3. Gets the totals (subtotal, tax, shipping, total)
+4. Creates a new order record
+5. For each item in cart:
+   - Creates an order_items record
+6. Returns success message with order ID
+
+getOrderById($order_id):
+PURPOSE: Get all details about one order
+HOW IT WORKS:
+1. Gets the order ID
+2. Gets order information
+3. Gets all items in that order
+4. Returns everything together
+
+getAllOrders():
+PURPOSE: Get ALL orders for admin
+HOW IT WORKS:
+1. Asks database: "Give me all orders"
+2. Arranges them by date (newest first)
+3. Returns complete list
+
+saveUser($email, $name, $phone, $address):
+PURPOSE: Remember customer information
+HOW IT WORKS:
+1. Checks if customer already exists
+2. If yes: update their info
+3. If no: create new customer
+4. Saves to database
+
+getUserByEmail($email):
+PURPOSE: Find a customer by their email
+HOW IT WORKS:
+1. Searches database for that email
+2. Returns customer info if found
+
+
+11. DATABASE.SQL - THE STORAGE INSTRUCTIONS
+------------------------------------------------------------------------
+
+This is like a BLUEPRINT FOR BUILDING STORAGE SHELVES.
+
+It says:
+"Create a shelf called 'products' with boxes for: name, price, emoji, color"
+"Create another shelf called 'orders' for keeping track of who bought what"
+"Put 6 sample fruits in the products shelf"
+
+SIMPLE EXPLANATION:
+Like drawing where every item in your storage should go before you build it!
+
+WHAT IT CREATES:
+
+TABLE 1: PRODUCTS
+Stores information about each fruit:
+- id (unique number for each fruit)
+- name (like "Apples")
+- description (details about it)
+- price (like 5.99)
+- emoji (the picture like 🍎)
+- bg_color (background color like #ff6b6b)
+- created_at (when it was added)
+
+TABLE 2: USERS
+Stores customer information:
+- id (unique customer number)
+- email (like john@example.com)
+- name (customer's name)
+- phone (phone number)
+- address (delivery address)
+- created_at (when they registered)
+
+TABLE 3: ORDERS
+Stores order information:
+- id (unique order number)
+- user_email (who ordered it)
+- subtotal (price before tax/shipping)
+- total_amount (final price)
+- tax (tax amount)
+- shipping (shipping cost)
+- status (Pending/Shipped/Completed)
+- created_at (when they ordered)
+
+TABLE 4: ORDER_ITEMS
+Stores what's in each order:
+- id (unique line item number)
+- order_id (which order this is for)
+- product_id (which product it is)
+- product_name (name of product)
+- price (price at time of order)
+- quantity (how many)
+- subtotal (price × quantity)
+
+SAMPLE DATA:
+6 fruits are inserted:
+1. Apples - $5.99 - 🍎 - red
+2. Bananas - $3.49 - 🍌 - yellow
+3. Strawberries - $7.99 - 🍓 - pink
+4. Cucumbers - $2.99 - 🥒 - green
+5. Carrots - $4.49 - 🥕 - orange
+6. Tomatoes - $4.99 - 🍅 - red
+
+
+12. INIT-DATABASE.PHP - THE BUILDER
+------------------------------------------------------------------------
+
+This is like the CONSTRUCTION WORKER who reads the blueprint and actually builds it!
+
+It:
+1. Reads database.sql
+2. Creates the storage shelves
+3. Puts sample fruits in them
+4. Says "Done! Your storage is ready!"
+
+SIMPLE EXPLANATION:
+Takes the blueprint and actually makes it happen!
+
+HOW IT WORKS:
+
+STEP 1: Read the blueprint
+- Gets the contents of database.sql
+- All the instructions for creating tables
+
+STEP 2: Execute each instruction
+- Takes each SQL command
+- Runs it to create tables
+- Inserts sample data
+
+STEP 3: Report status
+- Shows which commands succeeded
+- Shows error messages if any failed
+
+STEP 4: Return result
+- Tells the setup.php page:
+  * Success or failure
+  * What was done
+  * Any error messages
+
+This is run ONCE when you first set up the website.
+
+================================================================================
+PART 3: THE BRAIN LOGIC (What happens when you click buttons)
+================================================================================
+
+13. SCRIPT.JS - MAIN SHOP LOGIC
+------------------------------------------------------------------------
+
+This is like the CASHIER WHO HANDLES YOUR FIRST VISIT.
+
+What it does:
+
+🔹 openModal(productId):
+PURPOSE: Show details when you click "View Details"
+HOW IT WORKS:
+1. You click "View Details" on a product
+2. openModal() finds which product you clicked
+3. Gets all the info (name, price, description, emoji)
+4. Opens a big box (modal) on screen
+5. Shows:
+   - Product picture
+   - Product name
+   - Price
+   - Rating (stars)
+   - Description
+   - Quantity selector (how many you want)
+   - "Add to Cart" button
+   - "Buy Now" button
+   - Product info (benefits list)
+
+🔹 getCart():
+PURPOSE: Get what's in your cart from browser memory
+HOW IT WORKS:
+1. Asks your browser: "What items did the user add to cart?"
+2. Your browser remembers everything (localStorage)
+3. Returns the list
+
+🔹 saveCart():
+PURPOSE: Remember what's in cart after changes
+HOW IT WORKS:
+1. Saves cart to browser memory
+2. Updates the cart count badge (number shown on cart icon)
+
+🔹 addToCart():
+PURPOSE: When you click "Add to Cart" button
+HOW IT WORKS:
+1. Gets the product info (name, price, etc.)
+2. Gets how many you want (from quantity box)
+3. Saves to browser memory
+4. Updates cart count
+5. Shows success message: "Added 2 x Apples to your cart!"
+6. Closes the modal
+
+🔹 updateCartCount():
+PURPOSE: Shows the number of items in cart on the icon
+HOW IT WORKS:
+1. Counts all items in cart
+2. Shows it as a badge: (3)
+3. Updates whenever cart changes
+
+🔹 buyNow():
+PURPOSE: When you click "Buy Now" button
+HOW IT WORKS:
+1. Adds item to cart (same as Add to Cart)
+2. Immediately takes you to checkout.php
+3. You don't see cart page, go straight to paying
+
+🔹 closeModal():
+PURPOSE: Close the details box
+HOW IT WORKS:
+1. Hides the modal
+2. Takes you back to main page
+
+OTHER FUNCTIONS:
+
+getEmoji(productId):
+- Returns the emoji for each product
+- Apples = 🍎, Bananas = 🍌, etc.
+
+Product data object:
+- Stores all information about the 6 products
+- Name, price, description, emoji, color, rating
+
+
+14. CART.JS - CART PAGE LOGIC
+------------------------------------------------------------------------
+
+This is like the SHOPPING CART ASSISTANT.
+
+🔹 getCart():
+PURPOSE: Get what's in your cart
+HOW IT WORKS:
+Asks your browser: "What did they put in the cart?"
+It remembers everything!
+
+🔹 renderCart():
+PURPOSE: Display all cart items on the page
+HOW IT WORKS:
+1. Gets all items from cart
+2. For each item, creates a table row showing:
+   - Product name with emoji
+   - Price per item
+   - Quantity with +/- buttons
+   - Total for that item
+   - Remove button
+3. Updates the totals (subtotal, tax, shipping, total)
+4. If cart is empty, shows "Your cart is empty" message
+
+🔹 updateQuantity(productId, quantity):
+PURPOSE: Change how many of something you want
+HOW IT WORKS:
+1. Gets the product ID
+2. Changes the quantity number
+3. If you set it to 0, removes the item
+4. Updates cart in browser memory
+5. Recalculates totals
+6. Shows updated page
+
+🔹 increaseQuantity(productId):
+PURPOSE: When you click the "+" button
+HOW IT WORKS:
+1. Adds 1 to the quantity
+2. Saves and refreshes display
+
+🔹 decreaseQuantity(productId):
+PURPOSE: When you click the "-" button
+HOW IT WORKS:
+1. Subtracts 1 from quantity
+2. If it goes to 0, removes item
+3. Saves and refreshes display
+
+🔹 removeFromCart(productId):
+PURPOSE: Delete an item completely
+HOW IT WORKS:
+1. Finds the item in your cart
+2. Deletes it completely
+3. Removes from browser memory
+4. Updates display
+
+🔹 calculateTotals():
+PURPOSE: Do the math on your order
+HOW IT WORKS:
+1. Adds up all item prices × quantities = subtotal
+2. Calculates shipping:
+   - If subtotal >= $50: FREE shipping
+   - If subtotal < $50: $5.99 shipping
+3. Calculates tax: subtotal × 8% (8% tax rate)
+4. Calculates total: subtotal + tax + shipping
+5. Returns all 4 numbers
+
+🔹 updateSummary():
+PURPOSE: Update the right side summary box
+HOW IT WORKS:
+1. Gets the totals from calculateTotals()
+2. Updates the display:
+   - Subtotal: $___
+   - Shipping: $___
+   - Tax: $___
+   - Total: $___
+
+🔹 proceedToCheckout():
+PURPOSE: When you click "Proceed to Checkout" button
+HOW IT WORKS:
+1. Checks if cart is empty
+2. If empty, shows error message
+3. If has items, goes to checkout.php page
+
+🔹 applyPromoCode():
+PURPOSE: When you enter a discount code
+HOW IT WORKS:
+1. Gets the code you typed
+2. Checks if it's valid:
+   - SAVE10 = 10% off
+   - SAVE20 = 20% off
+   - FRESH = 15% off
+   - ORGANIC = 25% off
+3. Shows message if valid or invalid
+4. (Real discount would be applied here)
+
+
+15. CHECKOUT.JS - PAYMENT PAGE LOGIC
+------------------------------------------------------------------------
+
+This is like the FINAL CHECKOUT HELPER.
+
+🔹 getCart():
+PURPOSE: Get the items you're buying
+HOW IT WORKS:
+Same as cart.js - gets items from browser memory
+
+🔹 calculateTotals():
+PURPOSE: Same math as cart.js
+HOW IT WORKS:
+1. Calculates subtotal, shipping, tax, total
+2. Same FREE shipping at $50+ rule
+3. Returns all numbers
+
+🔹 displayOrderSummary():
+PURPOSE: Show what you're about to buy
+HOW IT WORKS:
+1. Gets items from cart
+2. Shows each item:
+   - Name
+   - Quantity
+   - Total price for that item
+3. Shows order total on the right
+4. Updates: Subtotal, Shipping, Tax, Total
+
+🔹 submitOrder(event):
+PURPOSE: When you click "Place Order" button
+HOW IT WORKS:
+1. Checks if cart is empty
+2. Gets form information:
+   - Name
+   - Email
+   - Phone
+   - Address
+   - Card info
+3. Creates package with all info:
+   - Cart items
+   - Customer info
+   - Total amounts
+4. Sends to api.php using fetch
+5. api.php saves to database
+6. If success:
+   - Clears cart
+   - Shows success message with order ID
+   - Takes you back to main page
+7. If error:
+   - Shows error message
+   - You can try again
+
+
+16. ADMIN.JS - ADMIN DASHBOARD LOGIC
+------------------------------------------------------------------------
+
+This is like the BOSS'S ASSISTANT.
+
+🔹 loadOrders():
+PURPOSE: Get all orders when admin page loads
+HOW IT WORKS:
+1. Asks api.php: "Give me ALL orders"
+2. Gets list from database
+3. Shows them in a table
+4. Each row has:
+   - Order ID
+   - Customer email
+   - Total amount
+   - Status
+   - Date
+   - View button
+
+🔹 displayOrders(orders):
+PURPOSE: Show the orders in a nice table
+HOW IT WORKS:
+1. Gets the order list
+2. For each order, creates a table row
+3. Puts order info in columns
+4. Status gets a colored badge:
+   - Yellow badge = Pending
+   - Green badge = Completed
+   - Blue badge = Shipped
+5. Adds "View" button to see details
+
+🔹 viewOrderDetails(orderId):
+PURPOSE: When admin clicks "View" button
+HOW IT WORKS:
+1. Gets the order ID
+2. Sends to api.php: "Tell me about order #5"
+3. Gets back all info about that order
+4. Opens a modal box to show details
+
+🔹 displayOrderModal(order):
+PURPOSE: Show the details modal
+HOW IT WORKS:
+1. Takes the order information
+2. Shows in nice format:
+   - Order ID
+   - Customer email
+   - Status
+   - Date/time
+   - All items in that order
+   - Subtotal, Shipping, Tax
+   - Total amount
+
+🔹 closeOrderModal():
+PURPOSE: Close the details modal
+HOW IT WORKS:
+1. Hides the modal
+2. Goes back to order list
+
+================================================================================
+PART 4: THE STYLING (Making things pretty)
+================================================================================
+
+17. STYLE.CSS - ALL THE COLORS AND DESIGNS
+------------------------------------------------------------------------
+
+This is like the PAINTER WHO MAKES EVERYTHING BEAUTIFUL!
+
+WHAT IT COLORS/DESIGNS:
+
+RESET SECTION:
+- Removes default spacing from all elements
+- Sets up box-sizing for all elements
+
+BODY:
+- Color: Light gray background (#f5f5f5)
+- Font: Century Gothic (fancy looking)
+- Line height: 1.6 (space between lines of text)
+
+HEADER:
+- Color: Dark gray (#272727)
+- Sticky position (stays at top when scrolling)
+- Box shadow (looks 3D)
+- Flexbox layout (organized left to right)
+
+LOGO:
+- Color: White text
+- Font size: 24px
+- Bold text
+
+NAVIGATION LINKS:
+- Color: Light gray (#dddddd)
+- Hover effect: glows with white shadow
+- Smooth transition animation
+
+CART COUNT BADGE:
+- Color: Pink background (#ff6b9d)
+- White text
+- Circle shape
+- Shows number like (3)
+
+SEARCH BAR:
+- Input field with padding
+- Pink button next to it
+- Hover makes button darker
+
+HERO SECTION (Welcome banner):
+- Gradient background (purple to darker purple)
+- White text
+- Padding on top and bottom
+- Rounded corners
+- Large heading font
+
+PRODUCT CARDS:
+- White background
+- Rounded corners
+- Shadow effect
+- Padding inside
+- Hover effect: lifts up, bigger shadow
+- Smooth animation
+
+PRODUCT IMAGE:
+- Size: 200px height
+- Centered emoji inside
+- Large font size (80px)
+- Background color unique to each product
+
+PRODUCT NAME:
+- Font size: 1.3rem
+- Color: Dark gray
+- Bottom margin for space
+
+PRICE:
+- Font size: 1.5rem
+- Color: Pink #ff6b9d
+- Bold
+
+RATING:
+- Smaller font
+- Gray text
+- Shows stars
+
+BUTTONS:
+- Purple buttons (#667eea) for normal action
+- Pink buttons (#ff6b9d) for important action
+- Hover state: darker color
+- Smooth transition
+- Rounded corners
+
+MODAL (Pop-up box):
+- Dark semi-transparent overlay
+- White box in center
+- Fade-in animation
+- Close button at top right
+- Two column layout inside:
+  * Left: Product image
+  * Right: Product details
+
+MODAL CONTENT:
+- Product image (emoji)
+- Name, price, rating
+- Description text
+- Quantity selector with +/- buttons
+- Two buttons: "Add to Cart" and "Buy Now"
+- Product info list
+
+FOOTER:
+- Dark background (#272727)
+- Light gray text
+- Centered text
+- Top border divider
+
+CART PAGE STYLES:
+- White container with rounded corners
+- Two column layout:
+  * Left (wider): Cart items table
+  * Right (narrower): Order summary
+- Table with product info
+- Quantity controls (+/- buttons)
+- Remove button for each item
+- Sticky right side (stays visible when scrolling)
+- Summary box shows:
+  * Subtotal
+  * Shipping
+  * Tax
+  * Total (highlighted in pink)
+
+CHECKOUT PAGE STYLES:
+- Similar two column layout
+- Left: Form with input fields
+- Right: Order summary
+- Form fields have:
+  * Labels
+  * Input boxes
+  * Borders
+  * Focus state (blue border and shadow)
+- Buttons for placing order
+- Security badge (green box saying SSL Secured)
+
+ADMIN PAGE STYLES:
+- Orders table with:
+  * Header row (dark blue background)
+  * Data rows (white with hover effect)
+  * Colored status badges:
+    - Pending: yellow
+    - Completed: green
+    - Shipped: blue
+- Order details modal
+  * Shows all info formatted nicely
+
+RESPONSIVE DESIGN (Mobile/Tablet):
+When screen is smaller than 768px:
+- Hero heading shrinks
+- Modal becomes single column
+- Product grid becomes 2 columns instead of 3+
+- Cart and checkout stack vertically
+- Sticky elements become static
+- Buttons and inputs take full width
+- Font sizes reduce slightly
+
+COLOR SCHEME:
+- Primary: Purple #667eea (buttons, main color)
+- Secondary: Pink #ff6b9d (important actions, prices)
+- Dark: #272727 (header, text)
+- Light: #f5f5f5 (backgrounds)
+- Gray: #ddd, #999 (borders, muted text)
+- Success: Green (shipping info, security)
+
+ANIMATIONS:
+- Fade in (transparency)
+- Slide in (position change)
+- Hover lift (transform: translateY)
+- Color transitions (smooth 0.3s)
+
+================================================================================
+PART 5: THE DATABASE (Storage Room)
+================================================================================
+
+THE DATABASE EXPLAINED
+------------------------------------------------------------------------
+
+Imagine 4 filing cabinets:
+
+CABINET 1: PRODUCTS
+Stores information about each fruit you sell
+
+Columns:
+- ID: 1, 2, 3, 4, 5, 6 (unique number for each)
+- Name: "Apples", "Bananas", etc.
+- Description: Details about the product
+- Price: 5.99, 3.49, etc.
+- Emoji: 🍎, 🍌, etc.
+- BG_Color: #ff6b6b (red), #ffd93d (yellow), etc.
+- Created_at: When it was added
+
+Example row:
+ID | Name | Description | Price | Emoji | BG_Color
+1  | Apples | Crispy apples... | 5.99 | 🍎 | #ff6b6b
+
+
+CABINET 2: USERS
+Stores customer information
+
+Columns:
+- ID: 1, 2, 3 (unique customer number)
+- Email: john@example.com (unique email)
+- Name: "John Doe"
+- Phone: "555-1234"
+- Address: "123 Main St, City, State"
+- Created_at: When they first ordered
+
+Example row:
+ID | Email | Name | Phone | Address
+1  | john@example.com | John | 555-1234 | 123 Main
+
+
+CABINET 3: ORDERS
+Stores order information (summary of what was ordered)
+
+Columns:
+- ID: 1, 2, 3 (unique order number)
+- User_Email: john@example.com (whose order)
+- Subtotal: 15.47 (price before tax/shipping)
+- Total_Amount: 23.19 (final price)
+- Tax: 1.73 (8% of subtotal)
+- Shipping: 5.99 (or 0 if over $50)
+- Status: "Pending", "Shipped", "Completed"
+- Created_at: "2026-02-09 14:30:00" (when ordered)
+
+Example row:
+ID | User_Email | Subtotal | Total | Tax | Shipping | Status
+1  | john@example.com | 15.47 | 23.19 | 1.73 | 5.99 | Pending
+
+
+CABINET 4: ORDER_ITEMS
+Stores what was in each order (detailed line items)
+
+Columns:
+- ID: 1, 2, 3 (unique line number)
+- Order_ID: 1 (which order this belongs to)
+- Product_ID: 1 (which product)
+- Product_Name: "Apples"
+- Price: 5.99 (price at time of order)
+- Quantity: 2 (how many)
+- Subtotal: 11.98 (price × quantity)
+
+Example rows for Order #1:
+Order_ID | Product_ID | Product_Name | Price | Qty | Subtotal
+1        | 1          | Apples       | 5.99  | 2   | 11.98
+1        | 2          | Bananas      | 3.49  | 1   | 3.49
+
+HOW THEY CONNECT:
+- Products table: Has all available products
+- Orders table: Has when people ordered (order summary)
+- Order_Items table: Has what was in each order (references Products)
+- Users table: Has customer info (referenced by Orders via email)
+
+================================================================================
+HOW EVERYTHING WORKS TOGETHER
+================================================================================
+
+THE COMPLETE FLOW:
+
+1. USER VISITS WEBSITE
+   ↓
+   index.php loads
+   Shows header, footer, hero section
+   Displays 6 products in a grid
+   ↓
+
+2. USER CLICKS "VIEW DETAILS" ON A PRODUCT
+   ↓
+   onclick="openModal(productId)" triggers
+   ↓
+   script.js openModal() function runs
+   Finds product info (name, price, description, emoji)
+   Opens a modal pop-up box
+   User sees big product details
+   ↓
+
+3. USER SELECTS QUANTITY AND CLICKS "ADD TO CART"
+   ↓
+   addToCart() function runs
+   script.js saves info to browser memory (localStorage)
+   Cart count badge updates (shows number like (2))
+   Success message appears
+   Modal closes
+   ↓
+
+4. USER CLICKS CART ICON IN HEADER
+   ↓
+   Goes to cart.php page
+   ↓
+   cart.js renderCart() function runs
+   Gets cart data from browser memory
+   Shows table with all items
+   Shows prices, quantities, buttons to change
+   Calculates totals (subtotal, shipping, tax, total)
+   Shows order summary on right side
+   ↓
+
+5. USER CLICKS "PROCEED TO CHECKOUT"
+   ↓
+   Goes to checkout.php page
+   ↓
+   checkout.js displays order summary
+   Shows form asking for:
+   - Name
+   - Email
+   - Phone
+   - Address
+   - Card info
+   ↓
+
+6. USER FILLS FORM AND CLICKS "PLACE ORDER"
+   ↓
+   submitOrder() function runs
+   Collects all form data
+   Collects cart items and totals
+   Sends to api.php using fetch
+   ↓
+   api.php receives the data
+   Calls save_order action
+   ↓
+   api.php calls db-functions.php
+   createOrder() function saves to database:
+   - Creates new row in orders table
+   - Creates rows in order_items table for each product
+   ↓
+   Data saves to MySQL database
+   ↓
+   api.php returns success message with order ID
+   ↓
+   checkout.js shows:
+   "Order #5 placed successfully!"
+   Cart clears
+   Takes user back to index.php
+   ↓
+
+7. ADMIN VISITS ADMIN.PHP
+   ↓
+   admin.php loads
+   ↓
+   admin.js loadOrders() function runs
+   Sends message to api.php: "get_all_orders"
+   ↓
+   api.php calls db-functions.php getAllOrders()
+   Gets all orders from database
+   Returns them to admin.js
+   ↓
+   admin.js displayOrders() shows in table:
+   - Order IDs
+   - Customer emails
+   - Amounts
+   - Statuses
+   ↓
+
+8. ADMIN CLICKS "VIEW" ON AN ORDER
+   ↓
+   viewOrderDetails(orderId) function runs
+   Sends message to api.php: "get_order with ID#5"
+   ↓
+   api.php calls db-functions.php getOrderById(5)
+   Gets order info and all items
+   Returns everything
+   ↓
+   admin.js displayOrderModal() shows modal with:
+   - Order ID
+   - Customer info
+   - All items ordered
+   - Totals
+   ↓
+
+================================================================================
+SIMPLE ANALOGY: A REAL FRUIT SHOP
+================================================================================
+
+Imagine a physical fruit shop building:
+
+📦 BUILDING
+├─ 🚪 FRONT DOOR
+│  └─ index.php
+│     "Welcome to our store!"
+│     Shows all fruits on display
+│
+├─ 📦 BACK STORAGE ROOM
+│  └─ Database (MySQL)
+│     "All our fruits and orders kept here"
+│     - Products shelf (6 fruits)
+│     - Customers shelf (buyer info)
+│     - Orders shelf (what was sold)
+│     - Items shelf (details of each sale)
+│
+├─ 🛒 SHOPPING CART AREA
+│  └─ cart.php
+│     "Here's what you picked"
+│     Shows items, lets you change quantities
+│
+├─ 💰 CASH REGISTER
+│  └─ checkout.php
+│     "Time to pay!"
+│     Asks for your info
+│     Shows total
+│
+├─ 🏪 BACK OFFICE / MANAGER'S DESK
+│  └─ admin.php
+│     "Boss looks at all orders"
+│     Tracks sales
+│
+└─ 👨‍💼 WORKERS (The Code)
+   ├─ Senior Helper 1
+   │  └─ script.js
+   │     "Helps customers with products"
+   │     Opens product details
+   │     Adds to cart
+   │
+   ├─ Helper 2
+   │  └─ cart.js
+   │     "Manages the shopping basket"
+   │     Shows items
+   │     Does math for totals
+   │
+   ├─ Helper 3
+   │  └─ checkout.js
+   │     "Helps at the counter"
+   │     Collects info
+   │     Saves order
+   │
+   ├─ Helper 4
+   │  └─ admin.js
+   │     "Helps the boss"
+   │     Shows all orders
+   │     Shows order details
+   │
+   ├─ Helper 5 (Communication)
+   │  └─ api.php
+   │     "Goes back and forth to storage"
+   │     Gets info from storage room
+   │     Takes orders to storage
+   │
+   ├─ Helper 6 (Storage Handler)
+   │  └─ db-functions.php
+   │     "Actually manages the storage"
+   │     Gets things from shelves
+   │     Puts things on shelves
+   │
+   ├─ Helper 7
+   │  └─ style.css
+   │     "The interior decorator"
+   │     Makes everything look pretty
+   │     Colors, lights, comfortable layout
+   │
+   └─ Setup Guy
+      └─ setup.php
+         "Builds the storage shelves"
+         Sets everything up first time
+
+================================================================================
+KEY POINTS TO REMEMBER
+================================================================================
+
+1. PHP FILES = THE BRAIN
+   - index.php: Main page with products
+   - header.php: Top navigation (on every page)
+   - footer.php: Bottom section (on every page)
+   - cart.php: Shopping cart display
+   - checkout.php: Payment form
+   - admin.php: Order management
+   - setup.php: First-time setup
+   - api.php: Messenger between frontend and database
+   - db-config.php: Database connection
+   - db-functions.php: Database operations
+   - init-database.php: Database builder
+
+2. JAVASCRIPT FILES = THE HANDS (What makes things interactive)
+   - script.js: Product interactions (view details, add to cart)
+   - cart.js: Cart management (modify, calculate totals)
+   - checkout.js: Checkout process (submit order)
+   - admin.js: Admin dashboard (view orders)
+
+3. CSS FILE = THE PAINTER (Makes it look good)
+   - style.css: All colors, fonts, layouts, animations
+
+4. DATABASE FILES = THE MEMORY (Stores information)
+   - database.sql: Blueprint for tables
+   - MySQL database storage: Actual data storage
+   - 4 tables: products, users, orders, order_items
+
+EVERYTHING WORKS TOGETHER LIKE A TEAM!
+- Frontend (user sees): HTML + CSS + JavaScript
+- Backend (hidden): PHP + MySQL
+- Communication: API (api.php)
+
+================================================================================
+COMMON WORKFLOWS
+================================================================================
+
+WORKFLOW 1: BROWSING PRODUCTS
+User → index.php displays products
+User clicks product → script.js opens modal
+User sees details → script.js displays product info
+
+WORKFLOW 2: ADDING TO CART
+User clicks "Add to Cart" → script.js addToCart()
+→ Saves to browser memory (localStorage)
+→ Updates cart badge number
+→ Shows success message
+
+WORKFLOW 3: VIEWING CART
+User clicks cart → Goes to cart.php
+→ cart.js renderCart() displays all items
+→ Calculates totals (subtotal, tax, shipping, total)
+→ Shows summary box
+
+WORKFLOW 4: CHECKOUT
+User clicks "Proceed" → checkout.php loads
+→ checkout.js displays order summary
+→ User fills form
+→ User clicks "Place Order"
+→ checkout.js submitOrder() collects data
+→ Sends to api.php
+→ api.php saves to database via db-functions.php
+→ Success message with order ID
+
+WORKFLOW 5: VIEWING ORDERS (Admin)
+Admin visits admin.php
+→ admin.js loadOrders() gets all orders from database
+→ Displays in table
+→ Admin clicks "View"
+→ admin.js viewOrderDetails() gets that order
+→ Shows modal with all details
+
+================================================================================
+END OF EXPLANATION
+================================================================================
+
+This text file contains a complete, beginner-friendly explanation of your
+entire e-commerce website code.
+
+If you want more details on any specific part, just ask!
+Good luck with your website! 🎉
